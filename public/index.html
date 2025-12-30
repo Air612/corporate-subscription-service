@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision Ease - 新社会人のためのお金の判断疲れ軽減アプリ</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <header class="top-bar">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <div>
+            <p class="brand-title">Decision Ease</p>
+            <p class="brand-subtitle">お金に関する判断疲れを減らす</p>
+          </div>
+        </div>
+        <button id="themeToggle" class="icon-button" aria-label="テーマ切り替え">
+          🌓
+        </button>
+      </header>
+
+      <section id="onboarding" class="panel onboarding">
+        <div class="panel-header">
+          <h1>まずは、あなたの今を教えてください</h1>
+          <p>無理に答えなくて大丈夫です。わかる範囲で進められます。</p>
+        </div>
+        <div class="onboarding-step" data-step="1">
+          <h2>今月の手取りはどのくらいですか？</h2>
+          <div class="options">
+            <button class="option" data-value="20">20万円くらい</button>
+            <button class="option" data-value="25">25万円くらい</button>
+            <button class="option" data-value="30">30万円以上</button>
+            <button class="option" data-value="skip">答えない</button>
+          </div>
+        </div>
+        <div class="onboarding-step" data-step="2">
+          <h2>不安になりやすいのはどんなとき？</h2>
+          <div class="options">
+            <button class="option" data-value="balance">残高が見えないとき</button>
+            <button class="option" data-value="fees">請求が多いとき</button>
+            <button class="option" data-value="score">信用の状態がわからないとき</button>
+            <button class="option" data-value="skip">答えない</button>
+          </div>
+        </div>
+        <div class="onboarding-step" data-step="3">
+          <h2>通知はどのくらいが心地よいですか？</h2>
+          <div class="options">
+            <button class="option" data-value="light">必要なときだけ</button>
+            <button class="option" data-value="moderate">ほどほどに</button>
+            <button class="option" data-value="off">控えめに</button>
+          </div>
+        </div>
+        <button id="finishOnboarding" class="primary-button" disabled>
+          ダッシュボードへ
+        </button>
+      </section>
+
+      <section id="dashboard" class="panel dashboard hidden">
+        <div class="timeline">
+          <div class="timeline-header">
+            <h2>ホームタイムライン</h2>
+            <p>今日の状況を落ち着いて確認できます。</p>
+          </div>
+          <div id="timelineList" class="timeline-list"></div>
+        </div>
+
+        <div class="tab-panels">
+          <div id="tab-home" class="tab-panel active"></div>
+          <div id="tab-subscriptions" class="tab-panel"></div>
+          <div id="tab-reports" class="tab-panel"></div>
+          <div id="tab-learning" class="tab-panel"></div>
+          <div id="tab-settings" class="tab-panel"></div>
+        </div>
+      </section>
+
+      <nav class="tab-nav">
+        <button class="tab-button active" data-tab="home">ホーム</button>
+        <button class="tab-button" data-tab="subscriptions">サブスク</button>
+        <button class="tab-button" data-tab="reports">レポート</button>
+        <button class="tab-button" data-tab="learning">学習</button>
+        <button class="tab-button" data-tab="settings">設定</button>
+      </nav>
+    </div>
+
+    <div id="premiumOverlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-card">
+        <p class="overlay-text">
+          今、見えているのはこれまでのお金の動きです。<br /><br />
+          でもこれからは、起きる前の不安も扱えます。
+        </p>
+        <button id="premiumCheckout" class="primary-button">
+          これからも一緒に考える（月800円）
+        </button>
+        <p class="overlay-footnote">いつでもやめられます。データは消えません。</p>
+        <button id="closePremium" class="secondary-button">あとで</button>
+      </div>
+    </div>
+
+    <div id="cancelOverlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-card">
+        <h2>プランの整理を手伝います</h2>
+        <p>理由を教えてもらえますか？無理に答える必要はありません。</p>
+        <div class="options vertical">
+          <label><input type="radio" name="cancelReason" value="price" /> 価格が合わない</label>
+          <label><input type="radio" name="cancelReason" value="usage" /> 使う機会が少ない</label>
+          <label><input type="radio" name="cancelReason" value="other" /> その他</label>
+        </div>
+        <div class="cancel-choices">
+          <button id="pausePlan" class="secondary-button">1か月お休み</button>
+          <button id="reduceNotice" class="secondary-button">通知を減らす</button>
+          <button id="confirmCancel" class="primary-button">解除を続ける</button>
+        </div>
+        <div id="cancelFinal" class="cancel-final hidden">
+          <p>
+            また必要になったら、いつでもここにあります。<br /><br />
+            お金の記録は、消えません。
+          </p>
+          <button id="closeCancel" class="primary-button">閉じる</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
